@@ -1,0 +1,21 @@
+#Source: https://github.com/resin-io/qemu/releases
+#Source: https://github.com/resin-io-library/base-images
+FROM resin/armhf-alpine as builder
+
+
+FROM arm32v7/debian:stable-slim
+#FROM debian:stable-slim
+
+COPY --from=builder /usr/bin/qemu-arm-static /usr/bin/qemu-arm-static
+COPY --from=builder /usr/bin/resin-xbuild /usr/bin/resin-xbuild
+COPY --from=builder /usr/bin/cross-build-start /usr/bin/cross-build-start
+COPY --from=builder /usr/bin/cross-build-end /usr/bin/cross-build-end
+
+
+RUN [ "cross-build-start" ]
+
+RUN apt-get update  
+#RUN apt-get install python  
+#RUN pip install virtualenv
+
+RUN [ "cross-build-end" ]
