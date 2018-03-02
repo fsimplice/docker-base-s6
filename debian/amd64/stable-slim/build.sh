@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
 
+image=${REPO:-build}/${IMAGE:-baseimage}:${TAG:-debian_stable-slim}
+
 echo "Using BUILD_OPTS=${BUILD_OPTS}"
-docker build ${BUILD_OPTS} . -t build/baseimage:alpine_3.6
+echo "Building ${image}"
+
+docker build ${BUILD_OPTS} . -t ${image}

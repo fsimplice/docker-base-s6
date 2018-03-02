@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-image=${REPO:-build}/${IMAGE:-baseimage}:${TAG:-alpine_3.7}
+image=${REPO:-build}/${IMAGE:-baseimage}:${TAG:-__IMAGE_TAG__}
 
 echo "Using BUILD_OPTS=${BUILD_OPTS}"
 echo "Building ${image}"

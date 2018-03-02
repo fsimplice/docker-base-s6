@@ -1,3 +1,6 @@
 #!/usr/bin/env sh
 
-docker run --rm --name  debian_stable -it  build/baseimage:debian_stable /bin/sh
+image=${REPO:-build}/${IMAGE:-baseimage}:${TAG:-debian_stable}
+echo "Running image ${image}"
+
+docker run --rm --name  debian_stable -it  ${image} /bin/sh

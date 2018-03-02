@@ -29,7 +29,7 @@ function install_template {
     tpl_file=$(basename ${1})
     filename="${tpl_file%.*}"
     SED_ARGS=$(build_sed_args)
-    sed -e ${SED_ARGS} ${tpl_file} > ${dockerfileDirectory}/${filename}
+    sed -e ${SED_ARGS} ${1} > ${dockerfileDirectory}/${filename}
     chmod a+x ${dockerfileDirectory}/${filename}
     #echo "filename=$filename, tpl=$tpl_file, ARGS = ${SED_ARGS} rep=${dockerfileDirectory}"
 }
@@ -52,10 +52,10 @@ for arch_dist in ${!versions[*]}; do
         
         #Install build.sh
         #sed -e ${SED_ARGS} build.sh.tpl > ${dockerfileDirectory}/build.sh
-        install_template build.sh.tpl
+        install_template templates/build.sh.tpl
 
         #Install run.sh
-        install_template run.sh.tpl
+        install_template templates/run.sh.tpl
     done
 done
 

@@ -1,3 +1,6 @@
 #!/usr/bin/env sh
 
-docker run --rm --name  debian_stretch -it  build/baseimage:debian_stretch /bin/sh
+image=${REPO:-build}/${IMAGE:-baseimage}:${TAG:-debian_stretch}
+echo "Running image ${image}"
+
+docker run --rm --name  debian_stretch -it  ${image} /bin/sh
