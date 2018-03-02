@@ -7,8 +7,7 @@ ARG S6_OVERLAY_ARCH
 
 RUN echo -e "alpine:latest\n$S6_OVERLAY_VERSION $S6_OVERLAY_ARCH" > /s6_version.txt
 
-ADD https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-${S6_OVERLAY_ARCH}.tar.gz /tmp/
-RUN tar xzf /tmp/s6-overlay-${S6_OVERLAY_ARCH}.tar.gz -C /
+ADD https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-${S6_OVERLAY_ARCH}.tar.gz /
 
 ADD rootfs /
 
