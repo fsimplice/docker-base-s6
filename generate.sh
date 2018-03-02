@@ -2,8 +2,8 @@
 
 declare -A versions
 versions=(
-    [alpine]='alpine:3.6 alpine:3.7 alpine:latest'
-    [debian]='debian:stretch debian:stretch-slim debian:stable debian:stable-slim'
+    [amd64/alpine]='alpine:3.6 alpine:3.7 alpine:latest'
+    [amd64/debian]='debian:stretch debian:stretch-slim debian:stable debian:stable-slim'
 )
 
 declare -A patterns
@@ -34,11 +34,13 @@ function install_template {
     #echo "filename=$filename, tpl=$tpl_file, ARGS = ${SED_ARGS} rep=${dockerfileDirectory}"
 }
 
-for dist in ${!versions[*]}; do
-    for version in ${versions[${dist}]};do
+for arch_dist in ${!versions[*]}; do
+    for version in ${versions[${arch_dist}]};do
+        arch=${arch_dist%/*}
+        dist=${arch_dist#*/}
         tag=$(echo "${version}" | cut -d ":" -f2)
         image_tag=$(echo "${dist}_${tag}")
-        dockerfileDirectory="${dist}/${tag}"
+        dockerfileDirectory="${dist}/${arch}/${tag}"
         
         #Install rootfs
         mkdir -p ${dockerfileDirectory}
