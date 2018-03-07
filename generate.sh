@@ -27,11 +27,14 @@ function build_sed_args {
 function install_template {
     #https://stackoverflow.com/a/965072
     tpl_file=$(basename ${1})
-    filename="${tpl_file%.*}"
+    to_file="${2}"
+    if [ -z ${to_file} ]
+    then
+        to_file="${tpl_file%.*}"; #tpl file without extension as default
+    fi
     SED_ARGS=$(build_sed_args)
-    sed -e ${SED_ARGS} ${1} > ${dockerfileDirectory}/${filename}
-    chmod a+x ${dockerfileDirectory}/${filename}
-    #echo "filename=$filename, tpl=$tpl_file, ARGS = ${SED_ARGS} rep=${dockerfileDirectory}"
+    sed -e ${SED_ARGS} ${1} > ${dockerfileDirectory}/${to_file}
+    chmod a+x ${dockerfileDirectory}/${to_file}
 }
 
 for arch_dist in ${!versions[*]}; do
