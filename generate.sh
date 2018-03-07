@@ -50,11 +50,16 @@ for arch_dist in ${!versions[*]}; do
         cp -r -f rootfs ${dockerfileDirectory}
                 
         #Install Dockerfile
-        #sed -e ${SED_ARGS} Dockerfile.tpl > ${dockerfileDirectory}/Dockerfile
-        install_template Dockerfile.tpl
+        if [ -e "Dockerfile-${dist}.tpl" ];
+        then
+            echo "Using Dockerfile-${dist}.tpl for dist='${dist}', arch='${arch}', tag='${tag}'"
+            install_template Dockerfile-${dist}.tpl Dockerfile
+        else
+            echo "Using Dockerfile.tpl for dist='${dist}', arch='${arch}', tag='${tag}'"
+            install_template Dockerfile.tpl Dockerfile
+        fi
         
         #Install build.sh
-        #sed -e ${SED_ARGS} build.sh.tpl > ${dockerfileDirectory}/build.sh
         install_template templates/build.sh.tpl
 
         #Install run.sh
