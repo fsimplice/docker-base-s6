@@ -1,7 +1,7 @@
 DIST ?= alpine
 ARCH ?= amd64
 TAG ?= latest
-
+REPO ?= local/baseimage-s6
 
 build: $(DIST)/$(ARCH)/$(TAG)/Dockerfile
 	@docker build $(BUILD_OPTS) $(DIST)/$(ARCH)/$(TAG)/ -f $(DIST)/$(ARCH)/$(TAG)/Dockerfile -t $(REPO):$(DIST)_$(TAG)$(VARIANT)
