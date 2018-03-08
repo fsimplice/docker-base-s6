@@ -29,5 +29,5 @@ run:
 	@docker run --name baseimage-s6 $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) echo "Hello world !!!"
 
 run-shell:
-	@docker run -it --rm $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) /bin/sh
+	@docker run -it --rm $(RUN_OPTS) $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) /bin/bash
 
