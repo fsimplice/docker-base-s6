@@ -1,4 +1,5 @@
-#!/usr/bin/with-contenv sh
+#!/usr/bin/with-contenv bash
+set -e
 
 #
 # Generated using patorjk.com/software/taag/
@@ -11,20 +12,23 @@ echo "      ##    ##    ######### ##   ##      ##     ##  ##  #### ##    ##  ";
 echo "##    ##    ##    ##     ## ##    ##     ##     ##  ##   ### ##    ##  ";
 echo " ######     ##    ##     ## ##     ##    ##    #### ##    ##  ######   ";
 
-USERNAME=${USERNAME:-auser}
+USERNAME=${USERNAME:-userapp}
+PUID=${PUID:-1000}
+PGID=${PGID:-1000}
 
-UID=${UID:-1000}
-GID=${GID:-1000}
+#Create user with specified id
+useradd -u ${PUID} -U -d /data -s /bin/false ${USERNAME}
 
-if [ ! "$(id -u ${USERNAME})" -eq "$UID" ]; then usermod -o -u "$UID" ${USERNAME} ; fi
-if [ ! "$(id -g ${USERNAME})" -eq "$GID" ]; then groupmod -o -g "$GID" ${USERNAME} ; fi
+# Change gid if necessary
+[ "$(id -g ${USERNAME})" -eq "${PGID}" ] || groupmod -o -g ${PGID} ${USERNAME}
 
 echo "
 -------------------------------------
     GID/UID
 -------------------------------------
-User name: $(id -n ${USERNAME}
+Username:    ${USERNAME}
 User uid:    $(id -u ${USERNAME})
 User gid:    $(id -g ${USERNAME})
 "
-mkdir -p /data && chown ${USERNAME}:${USERNAME} /data
+
+mkdir -p /data && chown -R ${USERNAME}:${USERNAME} /data
