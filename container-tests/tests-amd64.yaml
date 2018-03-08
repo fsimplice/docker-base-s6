@@ -23,8 +23,8 @@ commandTests:
 
   - name: "Default values"
     setup: [["/init"]]
-    command: "tail"
-    args: ["-1", "/etc/passwd"]
+    command: "echo"
+    args: ["toto"]
     envVars:
       - key:  foo
         value: baz
