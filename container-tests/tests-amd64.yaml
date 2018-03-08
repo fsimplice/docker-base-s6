@@ -13,7 +13,7 @@ fileExistenceTests:
     path: '/s6_version.txt'
     shouldExist: true
 
-# check cont-init.d/10-user file exists
-  - name: '10-user'
-    path: '/etc/cont-init.d/10-user'
+# check cont-init.d/10-adduser file exists
+  - name: '10-adduser'
+    path: '/etc/cont-init.d/10-adduser'
     shouldExist: true
