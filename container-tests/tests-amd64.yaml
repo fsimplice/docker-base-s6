@@ -23,8 +23,8 @@ commandTests:
 
   - name: "Default values"
     setup: [["/init"]]
-    command: "echo"
-    args: ["toto"]
+    command: "/bin/bash"
+    args: ["-c", "echo", "toto", ";", "exit"]
     envVars:
       - key:  foo
         value: baz
