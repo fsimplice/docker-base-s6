@@ -6,6 +6,30 @@ globalEnvVars:
   - key: "GUID"
     value: "1000"
 
+commandTests:
+#  - name: "gunicorn flask"
+#    setup: [["virtualenv", "/env"], ["pip", "install", "gunicorn", "flask"]]
+#    teardown: [["virtualenv", "/env"], ["pip", "install", "gunicorn", "flask"]]
+#    command: "which"
+#    args: ["gunicorn"]
+#    envVars: 
+#            - key:  foo
+#            value: baz
+#    expectedOutput: ["/env/bin/gunicorn"]
+#    excludedOutput: [".*Inst.*Security.* | .*Security.*Inst.*"]
+#    expectedError: [".*Inst.*Security.* | .*Security.*Inst.*"]
+#    excludedError: [".*Inst.*Security.* | .*Security.*Inst.*"]
+#    exitCode: 0
+
+  - name: "Default values"
+    setup: [["/init"]]
+    command: "tail"
+    args: ["-1", "/etc/passwd"]
+    envVars:
+      - key:  foo
+        value: baz
+    expectedOutput: ["app:x:1000"]
+
 fileExistenceTests:
 
 # check s6_version.txt file exists
@@ -17,3 +41,16 @@ fileExistenceTests:
   - name: '10-adduser'
     path: '/etc/cont-init.d/10-adduser'
     shouldExist: true
+
+
+metadataTest:
+
+  env:
+    - key: S6_OVERLAY_VERSION
+      value: v1.21.2.2
+    - key: S6_OVERLAY_ARCH
+      value: amd64
+  volumes: ["/data"]
+  entrypoint: ["/init"]
+#cmd: ["/bin/bash"]
+#workdir: ["/data"]
