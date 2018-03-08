@@ -11,4 +11,6 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY
 RUN tar xzvf /tmp/s6-overlay-${S6_OVERLAY_ARCH}.tar.gz -C /
 ADD rootfs /
 
+VOLUME /data
+
 ENTRYPOINT ["/init"]

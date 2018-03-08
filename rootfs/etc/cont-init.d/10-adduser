@@ -1,0 +1,30 @@
+#!/usr/bin/with-contenv sh
+
+#
+# Generated using patorjk.com/software/taag/
+#
+echo " ######  ########    ###    ########  ######## #### ##    ##  ######   ";
+echo "##    ##    ##      ## ##   ##     ##    ##     ##  ###   ## ##    ##  ";
+echo "##          ##     ##   ##  ##     ##    ##     ##  ####  ## ##        ";
+echo " ######     ##    ##     ## ########     ##     ##  ## ## ## ##   #### ";
+echo "      ##    ##    ######### ##   ##      ##     ##  ##  #### ##    ##  ";
+echo "##    ##    ##    ##     ## ##    ##     ##     ##  ##   ### ##    ##  ";
+echo " ######     ##    ##     ## ##     ##    ##    #### ##    ##  ######   ";
+
+USERNAME=${USERNAME:-auser}
+
+UID=${UID:-1000}
+GID=${GID:-1000}
+
+if [ ! "$(id -u ${USERNAME})" -eq "$UID" ]; then usermod -o -u "$UID" ${USERNAME} ; fi
+if [ ! "$(id -g ${USERNAME})" -eq "$GID" ]; then groupmod -o -g "$GID" ${USERNAME} ; fi
+
+echo "
+-------------------------------------
+    GID/UID
+-------------------------------------
+User name: $(id -n ${USERNAME}
+User uid:    $(id -u ${USERNAME})
+User gid:    $(id -g ${USERNAME})
+"
+mkdir -p /data && chown ${USERNAME}:${USERNAME} /data

@@ -25,3 +25,9 @@ save:
 tag:
 	@docker tag $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) $(REPO):$(DIST)_$(TAG)_$(ARCH)
 
+run:
+	@docker run --name baseimage-s6 $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) echo "Hello world !!!"
+
+run-shell:
+	@docker run -it --rm $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) /bin/sh
+
