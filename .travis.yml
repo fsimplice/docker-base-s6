@@ -7,7 +7,7 @@ git:
 
 env:
   global:
-    - REPO=${DOCKER_USERNAME}/qemu-user-static
+    - REPO=${DOCKER_USERNAME}/baseimage-s6
     - TRAVIS_QUALIFIER=-travis-ci
   matrix:
     - ARCH=amd64 DIST=alpine TAG=latest
@@ -21,11 +21,11 @@ before_script:
 script:
   - make build ARCH=${ARCH} DIST=${DIST} TAG=${TAG} VARIANT=${TRAVIS_QUALIFIER}
   - docker images
-#  - make login
-#  - make push TAG=${ARCH} VARIANT=${TRAVIS_QUALIFIER}
+  - make login
+  - make push ARCH=${ARCH} DIST=${DIST} TAG=${TAG} VARIANT=${TRAVIS_QUALIFIER}
 #Tests
-#  - make pull TAG=${ARCH} VARIANT=${TRAVIS_QUALIFIER}
-#  - container-structure-test -test.v -image ${REPO}:${ARCH}${TRAVIS_QUALIFIER} container-tests/tests-${ARCH}.yaml
+  - make pull ARCH=${ARCH} DIST=${DIST} TAG=${TAG} VARIANT=${TRAVIS_QUALIFIER}
+  - container-structure-test -test.v -image ${REPO}:${DIST}_${TAG}_${ARCH}${VARIANT} container-tests/tests-${ARCH}.yaml
 #Deploy
 #  - echo "Tagging ${REPO}:${ARCH}"
 #  - make tag TAG=${ARCH} VARIANT=${TRAVIS_QUALIFIER}
