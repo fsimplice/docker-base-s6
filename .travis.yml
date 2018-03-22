@@ -32,7 +32,7 @@ script:
   - container-structure-test -test.v -image ${REPO}:${DIST}_${TAG}_${ARCH}${TRAVIS_QUALIFIER} container-tests/tests-${ARCH}.yaml
 #Deploy
   - echo "Tagging ${REPO}:${ARCH}"
-  - make tag TAG=${ARCH} VARIANT=${TRAVIS_QUALIFIER}
+  - make tag ARCH=${ARCH} DIST=${DIST} TAG=${TAG} VARIANT=${TRAVIS_QUALIFIER}
   - docker images
-  - make push TAG=${ARCH}
+  - make push ARCH=${ARCH} DIST=${DIST} TAG=${TAG}
   - make logout
