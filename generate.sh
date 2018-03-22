@@ -12,6 +12,7 @@ patterns=(
     [__FROM__]='${from}'
     [__DIST__]='${dist}'
     [__IMAGE_TAG__]='${image_tag}'
+    [__ARCH__]='${arch}'
 )
 
 function build_sed_args {
