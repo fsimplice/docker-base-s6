@@ -12,8 +12,12 @@ env:
   matrix:
     - ARCH=amd64 DIST=alpine TAG=latest
     - ARCH=amd64 DIST=alpine TAG=3.7
-    - ARCH=amd64 DIST=alpine TAG=3.6    
+    - ARCH=amd64 DIST=alpine TAG=3.6
 
+    - ARCH=amd64 DIST=debian TAG=stable
+    - ARCH=amd64 DIST=debian TAG=stable-slim
+    - ARCH=amd64 DIST=debian TAG=stretch
+    - ARCH=amd64 DIST=debian TAG=stretch-slim
 before_script:
   - uname -a
   - curl -LO https://storage.googleapis.com/container-structure-test/v0.2.1/container-structure-test && chmod +x container-structure-test && sudo mv container-structure-test /usr/local/bin/
