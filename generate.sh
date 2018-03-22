@@ -65,6 +65,9 @@ for arch_dist in ${!versions[*]}; do
 
         #Install run.sh
         install_template templates/run.sh.tpl
+
+        #Install test.sh
+        install_template templates/test.sh.tpl
     done
 done
 

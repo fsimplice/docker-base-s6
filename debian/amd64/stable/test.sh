@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+image=${REPO:-build}/${IMAGE:-baseimage}:${TAG:-debian_stable}
+echo "Testing image ${image}"
+
+${CONTAINER_TEST_BIN_PATH:-../../..}/container-structure-test -image ${image} ${CONTAINER_TEST_FILE_PATH:-../../../container-tests/tests-${ARCH:-amd64}.yaml
