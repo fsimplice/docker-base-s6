@@ -35,3 +35,7 @@ run:
 run-shell:
 	@docker run -it --rm $(RUN_OPTS) $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) /bin/bash
 
+test: build
+	@echo "Testing  $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT)"
+	@container-structure-test -image $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) container-tests/tests-$(ARCH).yaml
+
