@@ -3,4 +3,4 @@
 image=${REPO:-build}/${IMAGE:-baseimage}:${TAG:-debian_stretch}
 echo "Testing image ${image}"
 
-${CONTAINER_TEST_BIN_PATH:-../../..}/container-structure-test -image ${image} ${CONTAINER_TEST_FILE_PATH:-../../../container-tests/tests-${ARCH:-amd64}.yaml
+${CONTAINER_TEST_BIN_PATH:-../../..}/container-structure-test -image ${image} ${CONTAINER_TEST_FILE_PATH:-../../..}/structure-test/tests-${ARCH:-amd64}.yaml
