@@ -20,6 +20,7 @@ push:
 	@docker push $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT)
 
 save:
+	@mkdir -p .images
 	@docker save --output .images/$(DIST)_$(TAG)_$(ARCH)$(VARIANT).tar $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT)
 
 tag:
