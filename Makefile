@@ -18,6 +18,7 @@ pull:
 	@docker pull $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT)
 
 push:
+	@echo "Pushing $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT)"
 	@docker push $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT)
 
 save:
@@ -25,6 +26,7 @@ save:
 	@docker save --output .images/$(DIST)_$(TAG)_$(ARCH)$(VARIANT).tar $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT)
 
 tag:
+	@echo "Tagging $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) to $(REPO):$(DIST)_$(TAG)_$(ARCH)"
 	@docker tag $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) $(REPO):$(DIST)_$(TAG)_$(ARCH)
 
 run:
