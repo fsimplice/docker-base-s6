@@ -37,5 +37,5 @@ run-shell:
 
 test: build
 	@echo "Testing  $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT)"
-	@container-structure-test -image $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) container-tests/tests-$(ARCH).yaml
+	@./container-structure-test -image $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) structure-test/tests-$(ARCH).yaml
 
