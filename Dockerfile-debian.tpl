@@ -6,9 +6,9 @@ ENV S6_OVERLAY_ARCH ${S6_OVERLAY_ARCH:-amd64}
 
 COPY rootfs /
 
-#RUN apt-get update
-RUN apt-get install -y \
-    curl \
+RUN apt-get update \
+    && apt-get install -y \
+       curl \
     && rm -rf /var/lib/apt/lists/*
 
 RUN echo -e "__BASE__\n$S6_OVERLAY_VERSION $S6_OVERLAY_ARCH" > /s6_version.txt
