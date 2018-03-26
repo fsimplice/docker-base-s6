@@ -6,7 +6,7 @@ globalEnvVars:
   - key: "GUID"
     value: "1000"
 
-commandTests:
+#commandTests:
 #  - name: "gunicorn flask"
 #    setup: [["virtualenv", "/env"], ["pip", "install", "gunicorn", "flask"]]
 #    teardown: [["virtualenv", "/env"], ["pip", "install", "gunicorn", "flask"]]
@@ -21,14 +21,14 @@ commandTests:
 #    excludedError: [".*Inst.*Security.* | .*Security.*Inst.*"]
 #    exitCode: 0
 
-  - name: "Default values"
-    setup: [["/init"]]
-    command: "/bin/bash"
-    args: ["-c", "echo", "toto", ";", "exit"]
-    envVars:
-      - key:  foo
-        value: baz
-    expectedOutput: ["app:x:1000"]
+#  - name: "Default values"
+#   setup: [["/init"]]
+#    command: "/bin/bash"
+#    args: ["-c", "echo", "toto", ";", "exit"]
+#    envVars:
+#      - key:  foo
+#       value: baz
+#    expectedOutput: ["app:x:1000"]
 
 fileExistenceTests:
 
