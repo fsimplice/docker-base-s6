@@ -44,7 +44,6 @@ fileExistenceTests:
 
 
 metadataTest:
-
   env:
     - key: S6_OVERLAY_VERSION
       value: v1.21.2.2
@@ -52,5 +51,3 @@ metadataTest:
       value: amd64
   volumes: ["/data"]
   entrypoint: ["/init"]
-#cmd: ["/bin/bash"]
-#workdir: ["/data"]
