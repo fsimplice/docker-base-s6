@@ -67,7 +67,7 @@ Docker base image with s6 overlay
   <td>stretch-slim</td>
   <td>elfabio972/baseimage-s6:debian_stretch-slim_amd64</td>
   <td>
-    <a href="https://microbadger.com/images/elfabio972/baseimage-s6:alpine_3.6_amd64" title="Get your own image badge on microbadger.com"><img src="https://images.microbadger.com/badges/image/elfabio972/baseimage-s6:debian_stretch-slim_amd64.svg"></a>
+    <a href="https://microbadger.com/images/elfabio972/baseimage-s6:debian_stretch-slim_amd64" title="Get your own image badge on microbadger.com"><img src="https://images.microbadger.com/badges/image/elfabio972/baseimage-s6:debian_stretch-slim_amd64.svg"></a>
     <a href="https://microbadger.com/images/elfabio972/baseimage-s6:debian_stretch-slim_amd64" title="Get your own commit badge on microbadger.com"><img src="https://images.microbadger.com/badges/commit/elfabio972/baseimage-s6:debian_stretch-slim_amd64.svg"></a>
   </td>
 </tr>
