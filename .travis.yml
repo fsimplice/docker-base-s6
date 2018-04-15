@@ -30,7 +30,7 @@ script:
   - make push ARCH=${ARCH} DIST=${DIST} TAG=${TAG} VARIANT=${TRAVIS_QUALIFIER}
 #Tests
   - make pull ARCH=${ARCH} DIST=${DIST} TAG=${TAG} VARIANT=${TRAVIS_QUALIFIER}
-  - container-structure-test -test.v -image ${REPO}:${DIST}_${TAG}_${ARCH}${TRAVIS_QUALIFIER} structure-test/tests-${ARCH}.yaml
+  - container-structure-test test --verbose --image ${REPO}:${DIST}_${TAG}_${ARCH}${TRAVIS_QUALIFIER} --config structure-test/tests-${ARCH}.yaml
 #Deploy
   - echo "Tagging ${REPO}:${ARCH}"
   - make tag ARCH=${ARCH} DIST=${DIST} TAG=${TAG} VARIANT=${TRAVIS_QUALIFIER}
