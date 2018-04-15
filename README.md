@@ -1,9 +1,14 @@
 ![s6-overlay version](https://img.shields.io/badge/s6--overlay-v.21.2.2-blue.svg)
 ![amd64](https://img.shields.io/badge/arch-amd64-green.svg)
 
-![alpine_3.6](https://img.shields.io/badge/alpine-3.6-lighgrey.svg)![alpine_3.7](https://img.shields.io/badge/alpine-3.7-lighgrey.svg)![alpine_latest](https://img.shields.io/badge/alpine-latest-lighgrey.svg)
+![alpine_3.6](https://img.shields.io/badge/alpine-3.6-red.svg)
+![alpine_3.7](https://img.shields.io/badge/alpine-3.7-red.svg)
+![alpine_latest](https://img.shields.io/badge/alpine-latest-red.svg)
 
-![debian_stable](https://img.shields.io/badge/debian-stable-lightgrey.svg)![debian_stable-slim](https://img.shields.io/badge/debian-stable--slim-lightgrey.svg)![debian_stretch](https://img.shields.io/badge/debian-stretch-lightgrey.svg)![debian_stretch-slim](https://img.shields.io/badge/debian-stretch--slim-lightgrey.svg)
+![debian_stable](https://img.shields.io/badge/debian-stable-red.svg)
+![debian_stable-slim](https://img.shields.io/badge/debian-stable--slim-red.svg)
+![debian_stretch](https://img.shields.io/badge/debian-stretch-red.svg)
+![debian_stretch-slim](https://img.shields.io/badge/debian-stretch--slim-red.svg)
 
 
 # docker-base-s6
