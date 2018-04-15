@@ -31,5 +31,5 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vendor="fsimplice" \
         org.label-schema.version=$S6_OVERLAY_VERSION \
         org.label-schema.schema-version="1.0" \
-        org.label-schema.docker.params="PUID=user id (default 1000), PGID=user group id (default 1000), USERNAME=username (default app)"
+        org.label-schema.docker.params="PUID=user id (default 1000), PGID=user group id (default 1000), USERNAME=username (default app)" \
         org.label-schema.docker.debug="docker exec -it $CONTAINER /bin/bash"
