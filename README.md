@@ -86,3 +86,71 @@ Docker base image with s6 overlay
 </tr>
 </table>
 
+## User / Group
+
+Sometimes permissions issues can happens between the host OS and the container when sharing volumes
+
+You can avoid this issue by using env variables `PUID` and `PGID`.
+
+| ENV VAR | Description | Default value | 
+| :---: | --- | -- |
+| USERNAME | Username | app |
+| PUID | Your user uid | 1000 |
+| PGID | Your user gid | 1000 |
+
+```shell
+$ docker run --rm elfabio972/baseimage-s6:alpine_latest_amd64 id app
+...
+uid=1000(app) gid=1000(app) groups=1000(app)
+...
+```
+
+```shell
+$ docker run --rm \
+  -e PUID=1111 \
+  -e PGID=2222 \
+  elfabio972/baseimage-s6:alpine_latest_amd64 id app
+...
+uid=1111(app) gid=2222(app) groups=2222(app)
+...
+```
+
+```shell
+$ docker run --rm \
+  -e USERNAME=myuser \
+  elfabio972/baseimage-s6:alpine_latest_amd64 id myuser
+...
+uid=1000(myuser) gid=1000(myuser) groups=1000(myuser)
+...
+```
+
+## META
+
+### s6-ovelay version
+
+```shell
+$ docker inspect -f '{{ index .Config.Labels "org.label-schema.version" }}' elfabio972/baseimage-s6:alpine_latest_amd64
+v1.21.2.2
+```
+
+or,
+
+```shell
+$ docker run --rm elfabio972/baseimage-s6:alpine_latest_amd64 cat /s6_version.txt
+...
+alpine:latest
+v1.21.2.2 amd64
+...
+```
+
+### Build date
+```shell
+$ docker inspect -f '{{ index .Config.Labels "org.label-schema.build-date" }}' elfabio972/baseimage-s6:alpine_latest_amd64
+2018-04-15T17:04:55Z
+```
+
+
+
+
+
+
