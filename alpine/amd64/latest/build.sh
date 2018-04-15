@@ -1,4 +1,11 @@
 #!/usr/bin/env sh
 
+image=${REPO:-build}/${IMAGE:-baseimage}:${TAG:-alpine_latest}
+
 echo "Using BUILD_OPTS=${BUILD_OPTS}"
-docker build ${BUILD_OPTS} . -t build/baseimage:alpine_3.6
+echo "Building ${image}"
+
+docker build \
+    --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+    --build-arg VCS_REF=`git rev-parse --short HEAD` \
+    ${BUILD_OPTS} . -t ${image}

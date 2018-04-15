@@ -1,0 +1,39 @@
+sudo: required
+services: docker
+language: bash
+
+git:
+  depth: 1
+
+env:
+  global:
+    - REPO=${DOCKER_USERNAME}/baseimage-s6
+    - TRAVIS_QUALIFIER=-SNAPSHOT
+    - CONTAINER_STRUCTURE_TEST_VERSION=1.1.0
+  matrix:
+    - ARCH=amd64 DIST=alpine TAG=latest
+    - ARCH=amd64 DIST=alpine TAG=3.7
+    - ARCH=amd64 DIST=alpine TAG=3.6
+
+    - ARCH=amd64 DIST=debian TAG=stable
+    - ARCH=amd64 DIST=debian TAG=stable-slim
+    - ARCH=amd64 DIST=debian TAG=stretch
+    - ARCH=amd64 DIST=debian TAG=stretch-slim
+before_script:
+  - uname -a
+  - curl -LO https://storage.googleapis.com/container-structure-test/v${CONTAINER_STRUCTURE_TEST_VERSION}/container-structure-test && chmod +x container-structure-test && sudo mv container-structure-test /usr/local/bin/
+
+script:
+  - make build ARCH=${ARCH} DIST=${DIST} TAG=${TAG} VARIANT=${TRAVIS_QUALIFIER}
+  - docker images
+  - make login
+  - make push ARCH=${ARCH} DIST=${DIST} TAG=${TAG} VARIANT=${TRAVIS_QUALIFIER}
+#Tests
+  - make pull ARCH=${ARCH} DIST=${DIST} TAG=${TAG} VARIANT=${TRAVIS_QUALIFIER}
+  - container-structure-test test --verbose --image ${REPO}:${DIST}_${TAG}_${ARCH}${TRAVIS_QUALIFIER} --config structure-test/tests-${ARCH}.yaml
+#Deploy
+  - echo "Tagging ${REPO}:${ARCH}"
+  - make tag ARCH=${ARCH} DIST=${DIST} TAG=${TAG} VARIANT=${TRAVIS_QUALIFIER}
+  - docker images
+  - make push ARCH=${ARCH} DIST=${DIST} TAG=${TAG}
+  - make logout

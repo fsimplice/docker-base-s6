@@ -1,3 +1,6 @@
 #!/usr/bin/env sh
 
-docker run --rm --name  alpine_3.6 -it  build/baseimage:alpine_3.6 /bin/sh
+image=${REPO:-build}/${IMAGE:-baseimage}:${TAG:-alpine_3.6}
+echo "Running image ${image}"
+
+docker run --rm --name  alpine_3.6 -it  ${image} /bin/sh
