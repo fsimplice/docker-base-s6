@@ -9,6 +9,7 @@ env:
   global:
     - REPO=${DOCKER_USERNAME}/baseimage-s6
     - TRAVIS_QUALIFIER=-SNAPSHOT
+    - CONTAINER_STRUCTURE_TEST_VERSION=1.1.0
   matrix:
     - ARCH=amd64 DIST=alpine TAG=latest
     - ARCH=amd64 DIST=alpine TAG=3.7
@@ -20,7 +21,7 @@ env:
     - ARCH=amd64 DIST=debian TAG=stretch-slim
 before_script:
   - uname -a
-  - curl -LO https://storage.googleapis.com/container-structure-test/v0.2.1/container-structure-test && chmod +x container-structure-test && sudo mv container-structure-test /usr/local/bin/
+  - curl -LO https://storage.googleapis.com/container-structure-test/v${CONTAINER_STRUCTURE_TEST_VERSION}/container-structure-test && chmod +x container-structure-test && sudo mv container-structure-test /usr/local/bin/
 
 script:
   - make build ARCH=${ARCH} DIST=${DIST} TAG=${TAG} VARIANT=${TRAVIS_QUALIFIER}
