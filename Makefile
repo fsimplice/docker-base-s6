@@ -8,7 +8,10 @@ generate:
 
 build: $(DIST)/$(ARCH)/$(TAG)/Dockerfile
 	@echo "Building $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT) using $(DIST)/$(ARCH)/$(TAG)/Dockerfile"
-	@docker build $(BUILD_OPTS) $(DIST)/$(ARCH)/$(TAG)/ -f $(DIST)/$(ARCH)/$(TAG)/Dockerfile -t $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT)
+	docker build \
+	--build-arg VCS_REF=`git rev-parse --short HEAD` \
+	--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+	$(BUILD_OPTS) $(DIST)/$(ARCH)/$(TAG)/ -f $(DIST)/$(ARCH)/$(TAG)/Dockerfile -t $(REPO):$(DIST)_$(TAG)_$(ARCH)$(VARIANT)
 	@docker images | grep "$(REPO)"
 
 login:

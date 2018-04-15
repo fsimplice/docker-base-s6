@@ -1,4 +1,6 @@
 FROM alpine:3.7
+ARG BUILD_DATE
+ARG VCS_REF
 ARG S6_OVERLAY_VERSION
 ARG S6_OVERLAY_ARCH
 ENV S6_OVERLAY_VERSION ${S6_OVERLAY_VERSION:-v1.21.2.2}
@@ -19,3 +21,13 @@ RUN curl -L --max-redirs 10 -o /tmp/s6-overlay-${S6_OVERLAY_ARCH}.tar.gz https:/
 
 VOLUME /data
 ENTRYPOINT ["/init"]
+
+# Build-time metadata as defined at http://label-schema.org
+LABEL org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.name="baseimage-s6" \
+        org.label-schema.description="A docker base image using s6 overlay" \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/fsimplice/docker-baseimage-s6" \
+        org.label-schema.vendor="fsimplice" \
+        org.label-schema.version=$S6_OVERLAY_VERSION \
+        org.label-schema.schema-version="1.0"
