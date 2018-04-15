@@ -8,7 +8,7 @@ git:
 env:
   global:
     - REPO=${DOCKER_USERNAME}/baseimage-s6
-    - TRAVIS_QUALIFIER=-travis-ci
+    - TRAVIS_QUALIFIER=-SNAPSHOT
   matrix:
     - ARCH=amd64 DIST=alpine TAG=latest
     - ARCH=amd64 DIST=alpine TAG=3.7
