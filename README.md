@@ -1,6 +1,6 @@
 ![s6-overlay version](https://img.shields.io/badge/s6--overlay-v.21.2.2-blue.svg)
 ![amd64](https://img.shields.io/badge/arch-amd64-green.svg)
-[![Travis](https://img.shields.io/travis/USER/REPO.svg)](https://travis-ci.org/fsimplice/docker-baseimage-s6)
+[![Build Status](https://travis-ci.org/fsimplice/docker-baseimage-s6.svg?branch=master)](https://travis-ci.org/fsimplice/docker-baseimage-s6)
 
 ![alpine_3.6](https://img.shields.io/badge/alpine-3.6-red.svg)
 ![alpine_3.7](https://img.shields.io/badge/alpine-3.7-red.svg)
