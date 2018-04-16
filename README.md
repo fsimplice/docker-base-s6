@@ -151,7 +151,9 @@ $ docker inspect -f '{{ index .Config.Labels "org.label-schema.build-date" }}' e
 ```
 
 
-
+## Links
+* [s6 What is it ?](https://skarnet.org/software/s6/index.html)
+* [just-containers/s6-overlay](https://github.com/just-containers/s6-overlay)
 
 
 
