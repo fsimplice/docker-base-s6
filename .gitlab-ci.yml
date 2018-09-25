@@ -44,7 +44,12 @@ mirror:github:
     - cd cloned_repo
     - git push --mirror ${GITHUB_REPOSITORY}
   stage: mirror
-#  only:
-#    - master
-  tags:
-    - alpine
+
+mirror:bitbucket:
+  <<: *ssh_agent_definition
+  script:
+    - rm -rf cloned_repo
+    - git clone --mirror $CI_REPOSITORY_URL cloned_repo
+    - cd cloned_repo
+    - git push --mirror ${BITBUCKET_REPOSITORY}
+  stage: mirror 

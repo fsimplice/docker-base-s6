@@ -4,6 +4,7 @@ echo "Checking gitlab vars"
 EXPECTED_VARS=(
     PRIVATE_KEY
     GITHUB_REPOSITORY
+    BITBUCKET_REPOSITORY
 )
 
 MISSING_VARS=()
