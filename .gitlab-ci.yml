@@ -30,7 +30,7 @@ verify:gitlab:
   image: debian:stable-slim
   script:
     - chmod a+x gitlab-ci/gitlab_check_vars.sh && ./gitlab-ci/gitlab_check_vars.sh
-  stage: mirror
+  stage: verify
 
 
 ################################################################################
