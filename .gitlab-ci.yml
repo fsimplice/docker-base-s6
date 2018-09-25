@@ -23,6 +23,16 @@ stages:
     - mkdir -p ~/.ssh
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
+.mirror: &mirror_def
+  <<: *ssh_agent_definition
+  script:
+    - rm -rf cloned_repo
+    - git clone --mirror $CI_REPOSITORY_URL cloned_repo
+    - cd cloned_repo
+    - git push --mirror ${REMOTE_REPOSITORY}
+  stage: mirror
+
+
 ################################################################################
 #                              verify                                          #
 ################################################################################   
@@ -37,19 +47,11 @@ verify:gitlab:
 #                              mirror                                          #
 ################################################################################
 mirror:github:
-  <<: *ssh_agent_definition
-  script:
-    - rm -rf cloned_repo
-    - git clone --mirror $CI_REPOSITORY_URL cloned_repo
-    - cd cloned_repo
-    - git push --mirror ${GITHUB_REPOSITORY}
-  stage: mirror
+  <<: *mirror_def
+  variables:
+    REMOTE_REPOSITORY: ${GITHUB_REPOSITORY}
 
 mirror:bitbucket:
-  <<: *ssh_agent_definition
-  script:
-    - rm -rf cloned_repo
-    - git clone --mirror $CI_REPOSITORY_URL cloned_repo
-    - cd cloned_repo
-    - git push --mirror ${BITBUCKET_REPOSITORY}
-  stage: mirror 
+  <<: *mirror_def
+  variables:
+    REMOTE_REPOSITORY: ${BITBUCKET_REPOSITORY}
