@@ -42,7 +42,7 @@ mirror:github:
     - rm -rf cloned_repo
     - git clone --mirror $CI_REPOSITORY_URL cloned_repo
     - cd cloned_repo
-    #- git push --mirror ${GITHUB_REPOSITORY}
+    - git push --mirror ${GITHUB_REPOSITORY}
   stage: mirror
 #  only:
 #    - master
