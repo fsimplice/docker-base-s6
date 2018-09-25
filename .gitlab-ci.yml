@@ -1,0 +1,49 @@
+variables:
+  GIT_STRATEGY: clone
+
+stages:
+    - verify
+    - mirror
+
+
+################################################################################
+#                              templates                                       #
+################################################################################
+.ssh_agent_template: &ssh_agent_definition
+  image: debian:stable-slim
+  before_script:
+    # install ssh-agent
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    # run ssh-agent
+    - eval $(ssh-agent -s)
+    # add ssh key stored in FORGE_PRIVATE_KEY variable to the agent store
+    - ssh-add <(echo "$PRIVATE_KEY")
+    # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
+    # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
+    - mkdir -p ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
+################################################################################
+#                              verify                                          #
+################################################################################   
+verify_gitlab:
+  image: debian:stable-slim
+  script:
+    - chmod a+x gitlab-ci/gitlab_check_vars.sh && ./gitlab-ci/gitlab_check_vars.sh
+
+
+################################################################################
+#                              mirror                                          #
+################################################################################
+mirror:github:
+  <<: *ssh_agent_definition
+  script:
+    - rm -rf cloned_repo
+    - git clone --mirror $CI_REPOSITORY_URL cloned_repo
+    - cd cloned_repo
+    #- git push --mirror ${GITHUB_REPOSITORY}
+  stage: mirror
+#  only:
+#    - master
+  tags:
+    - alpine
