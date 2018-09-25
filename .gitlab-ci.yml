@@ -13,7 +13,7 @@ stages:
   image: debian:stable-slim
   before_script:
     # install ssh-agent
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client git -y )'
     # run ssh-agent
     - eval $(ssh-agent -s)
     # add ssh key stored in FORGE_PRIVATE_KEY variable to the agent store
